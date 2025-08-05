@@ -1,0 +1,46 @@
+Explain the difference between npm and npx using the create-react-app code example.
+
+npm---
+npm is an easy command-line tool to manage(install, uninstall) node javascript packages in Nodejs.It is not easy to run and execute the installed packages with this.
+
+ npx--
+npx is the command-line tool to run the packages locally without the installation of packages. It is very helpful without the installation of the package, directly run package runner.
+
+create an application with npm.
+First, install the create-react-app using the npm command.
+
+We can install locally(without -g) or globally(-g option)
+
+npm install create-react-app -g
+
+It installs create-react-app from the remote repo into the local developer machine. Globally installation process
+
+use -g option globally
+It creates a node_modules folder t global npm directory - /usr/local/ folder in Linux and %AppData%/npm in windows.
+Also, Creates links for the bin folder of on global npm directory.
+Local installation process
+
+use without -g option for locally
+It creates a node_modules folder at the application directory
+Also, Creates links for the bin folder of on application/node_modules/.bin folder.
+This path is available and installed packages command are accessible from the application folder
+Once, the create-react-app is installed, It creates a link and the create-react-app command works globally.
+
+Run the below command to create a react application
+
+create-react-app app1
+It creates a scaffolding react application app1with all required files and scripts and also installs dependencies.
+
+ create a react application with npx.-------
+
+npx create-react-app my-app
+
+With a single command, It does the following things----
+It installs create-react-app from the npm repository
+Copy the package executable to a local path
+Run the command directly with all required parameters
+Both approaches(npm, npx) are used to create a react application using create-react-app.
+create-react-app is a one-time process to create a react application, It is not required to install globally, So npx avoids downloading locally for command-line execution.
+Hence, It is always a good idea to choose npx over the npm tool.
+
+
