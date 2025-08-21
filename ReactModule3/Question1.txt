@@ -1,0 +1,111 @@
+Discuss the concept of hooks in React. Explain how they differ from class component lifecycle methods. Also,provide an example. 
+Hooks in React:  React hooks are functions that let you "hook into" React's state and lifecycle features from function components. Before hooks, React only allowed these features in class components. Since the introduction of hooks, we can now write fully functional components with powerful capabilities, leading to cleaner and more readable code.Hooks allow function components to have access to state.
+
+Each component in React has a lifecycle which we can monitor and manipulate during its three main phases.
+
+The three phases are: Mounting, Updating, and Unmounting.
+
+
+
+Questin 2
+Explain and discuss its syntax, purpose, and how it manages state in functional components for the following hook#
+1  useState
+2 useEffect
+
+states are memeory of a component which titghtly coupeled with the component behaviours.To update value of state variable, we cannot just use plain JS code,instead there are special setter function which we need to use to update the state variable. if we do not use setter function to update the states's value then we will not see any impact on the UI layer.
+
+useState is a hook and using this we will able to get state variable inside the component.This function takes one argument i.e. initial value of the state variable.
+
+This useState hook returns us a 2 length array which has the following:
+The first element is the state variable we wanted to create.
+The second element is the setter Function to update the value of the state variable.
+
+syntax of useState:----
+
+import React, { useState } from 'react';
+
+let [statevariable,setStateVariable]=usestate(initialValue);
+
+stateVariable: This is the name of state variable. It will hold the current value of  state. We can name it anything descriptive, like count, name, isVisible, etc.
+setStateVariable: This is the "setter" function associated with  stateVariable. We use this function to update the value of stateVariable. By convention, it's named set followed by the capitalized stateVariable name (e.g., setCount, setName, setIsVisible).
+useState(initialValue): This is the useState hook itself.
+initialValue: This argument sets the initial value for your stateVariable when the component first renders. It can be of any data type (number, string, boolean, object, array, etc.). We can also pass a function as the initialValue if we need to perform some computation to determine the initial state, and this function will only run once during the initial render.
+
+useEffect:---
+
+Effect let we specific side effects (changes) that are caused by rendring/or rendering of a component.
+Example of an effect van be:
+.Downloading data.
+. Reading data from local storage
+
+when our component is being rendered,we want to download some data.
+To implement effects in react,we have a hook called as useEffect.
+
+effects can help us to synchronize our frontend with external system.
+syntax of useEffect:
+
+useEffect accepts two arguments. The second argument is optional.
+
+useEffect(<function>, <dependency>)
+
+Question 3
+Explain the concept of custom hooks in React, Provide one example scenario of when and how custom hooks can be useful, and also provide the code.
+
+Custom hooks in React are JavaScript functions that allow for the extraction and reuse of stateful logic from functional components. They are essentially reusable pieces of logic that can contain built-in React hooks like useState, useEffect, useContext, or even other custom hooks. The naming convention for custom hooks dictates that their names must start with the prefix "use" (e.g., useToggle, useFetchData). This convention helps React and its linting tools recognize them as hooks and enforce the rules of hooks.
+
+Example
+in this example I am try to make a custom hook for  a toogle any heading and paragraph and others.
+
+import { useState } from "react";
+
+function useToggle(defaultVal){
+    
+    const [value,setValue]=useState();
+    function toggleValue(val){
+        if(typeof val!='boolean'){
+            setValue(!value)
+        } else{
+            setValue(val)
+        }
+    }
+    return [value,toggleValue];
+    
+}
+export default useToggle;
+
+I am use this usetoggle hook to hide a heading H1
+import useToggle from "./component/useToggle"
+
+function App() {
+
+  const [value,toggleValue]=useToggle(true);
+  return (
+  <div>
+    <button onClick={toggleValue}>Toggle Heading</button>
+<h1>Module 3</h1>
+{value?<h2>hello</h2>:null}
+  </div>
+  )
+}
+
+export default App
+
+We are use this useToggle hook to show and hide any element of html.
+
+Question 4
+Explore ways to optimize performance in React using hooks.
+
+useMemo Hook
+In React useMemo Hook returns a memoized value and prevents the application from unnecessary re-renders. It is useful in heavy computations and processes when using functional components.
+
+useCallback Hooks
+The useCallback hook is used when you have a component in which the child is rerendering again and again without need.
+
+Pass an inline callback and an array of dependencies. useCallback will return a memoized version of the callback that only changes if one of the dependencies has changed. This is useful when passing callbacks to optimized child components that rely on reference equality to prevent unnecessary renders.
+
+React.memo for Pure Component Optimization:
+While not a hook itself, React.memo works in conjunction with useCallback and useMemo. It's a higher-order component that prevents a functional component from re-rendering if its props haven't changed.
+
+Question 5
+Implement a global state management system using the Context API and useContext hook. Create providers 
+and consumers for different contexts.
